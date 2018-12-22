@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 
 namespace WarframeModder
@@ -20,6 +21,18 @@ namespace WarframeModder
         public decimal AbilityEfficiencyModifier { get; private set; } = 0M;
         public decimal AbilityRangeModifier { get; private set; } = 0M;
         public decimal AbilityDurationModifier { get; private set; } = 0M;
+
+
+        public override string ToString()
+        {
+            return $"{Name}[{BaseName}]/{ModDrain}/{HealthModifier} {ShieldModifier} {ArmourModifier} {EnergyModifier}/{AbilityStrengthModifier} {AbilityEfficiencyModifier} {AbilityRangeModifier} {AbilityDurationModifier}";
+        }
+
+        [DebuggerHidden]
+        public string ToShortName()
+        {
+            return $"[{Name} {ModDrain}]";
+        }
 
         public static List<Mod> LoadModList(string fullFileName)
         {

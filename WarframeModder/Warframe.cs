@@ -14,10 +14,10 @@ namespace WarframeModder
         private readonly decimal _baseArmour = 65;
         private readonly decimal _baseEnergy = 100;
 
-        private readonly decimal _baseAbilityStrength = 100;
-        private readonly decimal _baseAbilityEfficiency = 100;
-        private readonly decimal _baseAbilityRange = 100;
-        private readonly decimal _baseAbilityDuration = 100;
+        private readonly decimal _baseAbilityStrength = 1;
+        private readonly decimal _baseAbilityEfficiency = 1;
+        private readonly decimal _baseAbilityRange = 1;
+        private readonly decimal _baseAbilityDuration = 1;
 
         private readonly int _baseModCapacity = 60;
         private readonly int _baseModSlots = 8;
@@ -33,9 +33,6 @@ namespace WarframeModder
         private readonly decimal _baseAbilityRangeModifier = 0M;
         private readonly decimal _baseAbilityDurationModifier = 0M;
 
-        // Base mods
-        private List<Mod> _baseMods = new List<Mod>();
-
         public decimal HealthModifier { get; set; } = 0M;
         public decimal ShieldModifier { get; set; } = 0M;
         public decimal ArmourModifier { get; set; } = 0M;
@@ -47,7 +44,6 @@ namespace WarframeModder
         public decimal AbilityDurationModifier { get; set; } = 0M;
 
         public int AuraModCapacityGain { get; set; } = 14;
-        public int BaseModCapacityDrain { get; private set; } = 0;
         public int ModCapacityDrain { get; set; } = 0;
         public int ModsInstalled { get; set; } = 0;
 
@@ -115,7 +111,7 @@ namespace WarframeModder
         {
             get
             {
-                return _baseModCapacity + AuraModCapacityGain - BaseModCapacityDrain - ModCapacityDrain;
+                return _baseModCapacity + AuraModCapacityGain - ModCapacityDrain;
             }
         }
         public int FreeModSlots
@@ -128,7 +124,7 @@ namespace WarframeModder
 
         private void VerifyInstalledMods(Mod mod)
         {
-            var installedMod = _baseMods.FirstOrDefault(m => m.BaseName == mod.BaseName);
+            var installedMod = InstalledMods.FirstOrDefault(m => m.BaseName == mod.BaseName);
             if (installedMod != null)
             {
                 throw new DuplicateModException(installedMod, mod);
@@ -145,37 +141,33 @@ namespace WarframeModder
             }
         }
 
-        public void AddBaseMod(Mod baseMod)
-        {
-            VerifyInstalledMods(baseMod);
-
-            _baseMods.Add(baseMod);
-            BaseModCapacityDrain -= baseMod.ModDrain;
-            ModsInstalled--;
-        }
-
-        public void ClearBaseMods()
-        {
-            _baseMods.Clear();
-            BaseModCapacityDrain = 0;
-            ModsInstalled = 0;
-        }
-
-        public void AddAdditionalMod(Mod newMod)
+        public void AddMod(Mod newMod)
         {
             VerifyInstalledMods(newMod);
 
             InstalledMods.Add(newMod);
-            ModCapacityDrain -= newMod.ModDrain;
+            ModCapacityDrain += newMod.ModDrain;
+            ModsInstalled++;
+        }
+
+        public void RemoveMod(Mod mod)
+        {
+            InstalledMods.Remove(mod);
+            ModCapacityDrain -= mod.ModDrain;
             ModsInstalled--;
         }
 
-        public void ClearAdditionalMods()
+        public void ClearInstalledMods()
         {
             ModCapacityDrain += InstalledMods.Sum(m => m.ModDrain);
             ModsInstalled += InstalledMods.Count;
 
             InstalledMods.Clear();
+        }
+
+        public override string ToString()
+        {
+            return $"{ModCapacityDrain}/{_baseModCapacity + AuraModCapacityGain} {ModsInstalled}/{_baseModSlots}";
         }
     }
 }
