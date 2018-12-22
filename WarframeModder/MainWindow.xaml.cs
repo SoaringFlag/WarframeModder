@@ -45,6 +45,7 @@ namespace WarframeModder
 
         private void GenerateModCombinations(int startingIndex = 0, string modCombination = "")
         {
+            // IDEA: Add list of mods to go through. It would also be possible to filter out base mods from the list that is being sent further down.
             for (int i = startingIndex; i < _mods.Count; i++)
             {
                 var mod = _mods[i];
