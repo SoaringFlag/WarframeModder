@@ -1,0 +1,15 @@
+C:\Projects\Personal\WarframeModder\WarframeModder\bin\Debug\WarframeModder.exe.config
+C:\Projects\Personal\WarframeModder\WarframeModder\bin\Debug\WarframeModder.exe
+C:\Projects\Personal\WarframeModder\WarframeModder\bin\Debug\WarframeModder.pdb
+C:\Projects\Personal\WarframeModder\WarframeModder\obj\Debug\WarframeModder.csprojAssemblyReference.cache
+C:\Projects\Personal\WarframeModder\WarframeModder\obj\Debug\MainWindow.g.cs
+C:\Projects\Personal\WarframeModder\WarframeModder\obj\Debug\App.g.cs
+C:\Projects\Personal\WarframeModder\WarframeModder\obj\Debug\WarframeModder_MarkupCompile.cache
+C:\Projects\Personal\WarframeModder\WarframeModder\obj\Debug\WarframeModder_MarkupCompile.lref
+C:\Projects\Personal\WarframeModder\WarframeModder\obj\Debug\MainWindow.baml
+C:\Projects\Personal\WarframeModder\WarframeModder\obj\Debug\WarframeModder.g.resources
+C:\Projects\Personal\WarframeModder\WarframeModder\obj\Debug\WarframeModder.Properties.Resources.resources
+C:\Projects\Personal\WarframeModder\WarframeModder\obj\Debug\WarframeModder.csproj.GenerateResource.cache
+C:\Projects\Personal\WarframeModder\WarframeModder\obj\Debug\WarframeModder.csproj.CoreCompileInputs.cache
+C:\Projects\Personal\WarframeModder\WarframeModder\obj\Debug\WarframeModder.exe
+C:\Projects\Personal\WarframeModder\WarframeModder\obj\Debug\WarframeModder.pdb
